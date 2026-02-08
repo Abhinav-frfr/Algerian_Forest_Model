@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Dataset Input Form - Blue Theme</title>
+    <style>
+        /* Blue Color Theme */
+        :root {
+            --primary-blue: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #4285f4;
+            --accent-blue: #4fc3f7;
+            --accent-light: #e3f2fd;
+            --background: #f8fbff;
+            --text-primary: #1a237e;
+            --text-secondary: #5c6bc0;
+            --shadow: rgba(26, 115, 232, 0.2);
+            --success: #00c853;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background) 0%, #e8f0fe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .login {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(26, 115, 232, 0.25);
+        }
+
+        .login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 28px;
+            position: relative;
+            padding-bottom: 15px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        /* Stagger the animations for form groups */
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        .form-group:nth-child(8) { animation-delay: 0.8s; }
+        .form-group:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-primary);
+            background-color: var(--white);
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input::placeholder {
+            color: #b0b0b0;
+        }
+
+        .field-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .field-group .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 1s;
+            animation-fill-mode: both;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-blue));
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-light), #f0f7ff);
+            border-radius: 10px;
+            border-left: 4px solid var(--success);
+            animation: slideIn 0.5s ease-out;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--success);
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .form-header {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 16px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo span {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .login {
+                padding: 30px 20px;
+            }
+            
+            .field-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <span>ML Predictor</span>
+        </div>
+        
+        <div class="login">
+            <h1>ML Dataset Input Form</h1>
+            <p class="form-header">Enter the following parameters to predict the Fire Weather Index (FWI)</p>
+
+            <form id="predictionForm">
+                <div class="field-group">
+                    <div class="form-group">
+                        <label for="temperature">Temperature (°C)</label>
+                        <input type="number" step="0.1" id="temperature" placeholder="e.g., 25.5" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rh">Relative Humidity (%)</label>
+                        <input type="number" step="0.1" id="rh" placeholder="e.g., 45.2" required>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <div class="form-group">
+                        <label for="ws">Wind Speed (km/h)</label>
+                        <input type="number" step="0.1" id="ws" placeholder="e.g., 12.3" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rain">Rain (mm)</label>
+                        <input type="number" step="0.1" id="rain" placeholder="e.g., 0.0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ffmc">Fine Fuel Moisture Code (FFMC)</label>
+                    <input type="number" step="0.1" id="ffmc" placeholder="e.g., 85.2" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dmc">Duff Moisture Code (DMC)</label>
+                    <input type="number" step="0.1" id="dmc" placeholder="e.g., 35.7" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="isi">Initial Spread Index (ISI)</label>
+                    <input type="number" step="0.1" id="isi" placeholder="e.g., 5.3" required>
+                </div>
+                
+                <div class="field-group">
+                    <div class="form-group">
+                        <label for="region">Region Code</label>
+                        <input type="number" id="region" placeholder="e.g., 0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="classes">Classes Coded</label>
+                        <input type="number" id="classes" placeholder="e.g., 1" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="predictBtn">Predict FWI</button>
+            </form>
+
+            <div class="result-container" id="resultContainer">
+                <h2>Fire Weather Index Prediction</h2>
+                <div class="result-value" id="resultValue">0.0</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('predictionForm');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultValue = document.getElementById('resultValue');
+            const predictBtn = document.getElementById('predictBtn');
+            
+            // Add focus animation to inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.querySelector('label').style.color = 'var(--primary-blue)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.parentElement.querySelector('label').style.color = 'var(--text-primary)';
+                    }
+                });
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state on button
+                const originalText = predictBtn.textContent;
+                predictBtn.textContent = 'Calculating...';
+                predictBtn.disabled = true;
+                
+                // Simulate API call/processing delay
+                setTimeout(() => {
+                    // Mock prediction result (in a real app, this would come from your backend)
+                    const mockResult = (Math.random() * 100).toFixed(2);
+                    
+                    // Update result
+                    resultValue.textContent = mockResult;
+                    
+                    // Show result with animation
+                    resultContainer.style.display = 'block';
+                    
+                    // Reset button
+                    predictBtn.textContent = originalText;
+                    predictBtn.disabled = false;
+                    
+                    // Scroll to result
+                    resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 1500);
+            });
+            
+            // Add some sample data for testing
+            document.getElementById('temperature').value = '25.5';
+            document.getElementById('rh').value = '45.2';
+            document.getElementById('ws').value = '12.3';
+            document.getElementById('rain').value = '0.0';
+            document.getElementById('ffmc').value = '85.2';
+            document.getElementById('dmc').value = '35.7';
+            document.getElementById('isi').value = '5.3';
+            document.getElementById('region').value = '0';
+            document.getElementById('classes').value = '1';
+        });
+    </script>
+</body>
+</html>
